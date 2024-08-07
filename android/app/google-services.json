@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "349103870571",
+    "project_id": "geo-data-app",
+    "storage_bucket": "geo-data-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:349103870571:android:153ef91c3eae2f2595d72e",
+        "android_client_info": {
+          "package_name": "com.example.geo_data_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALpnMKphZLZvTMdgiMTvbOiEw8fA464iM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
