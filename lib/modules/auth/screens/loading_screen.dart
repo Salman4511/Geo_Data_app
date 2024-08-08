@@ -17,7 +17,8 @@ class _LoadingScreenState extends State<LoadingScreen> {
       future: _checkUserRole(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Scaffold(body: Center(child: CircularProgressIndicator()));
+          return const Scaffold(
+              body: Center(child: CircularProgressIndicator()));
         }
 
         if (snapshot.hasData) {

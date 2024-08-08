@@ -1,7 +1,7 @@
-// main.dart
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:geo_data_app/shared/constants/constants.dart';
 import 'routes/route_generator.dart';
 import 'routes/app_routes.dart';
 
@@ -9,41 +9,47 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: const FirebaseOptions(
-      apiKey: "AIzaSyALpnMKphZLZvTMdgiMTvbOiEw8fA464iM",
-      appId: "1:349103870571:android:153ef91c3eae2f2595d72e",
-      messagingSenderId: '349103870571',
-      projectId: 'geo-data-app',
+      apiKey: Constants.firebaseApiKey,
+      appId: Constants.appId,
+      messagingSenderId: Constants.messagingSenderId,
+      projectId: Constants.projectId,
     ),
   );
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
+
+  final RouteGenerator routeGenerator = RouteGenerator();
+
+  static final GlobalKey<NavigatorState> navigatorKey =
+      GlobalKey<NavigatorState>();
 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<User?>(
       stream: FirebaseAuth.instance.authStateChanges(),
       builder: (context, snapshot) {
+        String initialRoute;
+
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const MaterialApp(
-              home: Scaffold(body: Center(child: CircularProgressIndicator())));
+            home: Scaffold(body: Center(child: CircularProgressIndicator())),
+          );
         } else if (snapshot.hasData) {
-          return MaterialApp(
-            title: 'GEO DATA APP',
-            theme: ThemeData(primarySwatch: Colors.blue),
-            initialRoute: AppRoutes.loading,
-            onGenerateRoute: RouteGenerator.generateRoute,
-          );
+          initialRoute = AppRoutes.loading;
         } else {
-          return MaterialApp(
-            title: 'GEO DATA APP',
-            theme: ThemeData(primarySwatch: Colors.blue),
-            initialRoute: AppRoutes.login,
-            onGenerateRoute: RouteGenerator.generateRoute,
-          );
+          initialRoute = AppRoutes.login;
         }
+
+        return MaterialApp(
+          navigatorKey: navigatorKey,
+          title: 'Geo Data App',
+          theme: ThemeData(primarySwatch: Colors.blue),
+          initialRoute: initialRoute,
+          onGenerateRoute: routeGenerator.onGenerateRoute,
+        );
       },
     );
   }

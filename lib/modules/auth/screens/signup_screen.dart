@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:geo_data_app/routes/app_routes.dart';
 import 'package:geo_data_app/shared/services/auth_services.dart';
 
-
 class SignupScreen extends StatefulWidget {
   @override
   State<SignupScreen> createState() => _SignupScreenState();

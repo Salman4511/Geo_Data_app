@@ -28,7 +28,7 @@ class AuthService {
           email: email, password: password);
       await _firestore.collection('users').doc(result.user!.uid).set({
         'email': email,
-        'role': 'user', // Default role or based on your logic
+        'role': 'user', 
       });
       return result.user;
     } catch (e) {

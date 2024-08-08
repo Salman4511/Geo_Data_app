@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:geo_data_app/routes/app_routes.dart';
 import 'package:geo_data_app/shared/services/auth_services.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -12,23 +12,48 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController emailController = TextEditingController();
-
   final TextEditingController passwordController = TextEditingController();
-
   final AuthService _authService = AuthService();
+
+  @override
+  void initState() {
+    super.initState();
+    final user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Navigator.pushReplacementNamed(context, AppRoutes.loading);
+      });
+    }
+  }
 
   void _login() async {
     final email = emailController.text;
     final password = passwordController.text;
 
-    final user = await _authService.signInWithEmailAndPassword(email, password);
-    if (user != null) {
-      Navigator.pushReplacementNamed(context, AppRoutes.loading);
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Login failed')),
-      );
+    try {
+      final user =
+          await _authService.signInWithEmailAndPassword(email, password);
+      if (user != null && mounted) {
+        Navigator.pushReplacementNamed(context, AppRoutes.loading);
+      } else if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Login failed')),
+        );
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Error: $e')),
+        );
+      }
     }
+  }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
   }
 
   @override
