@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:geo_data_app/shared/widgets/footer_widget.dart';
+import 'package:geo_data_app/shared/widgets/navbar_widget.dart';
 
 class AddLocationScreen extends StatefulWidget {
   const AddLocationScreen({super.key});
@@ -34,7 +36,7 @@ class _AddLocationScreenState extends State<AddLocationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Add Location')),
+      appBar: NavbarWidget() as PreferredSizeWidget?,
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -63,6 +65,7 @@ class _AddLocationScreenState extends State<AddLocationScreen> {
           ],
         ),
       ),
+      bottomNavigationBar: const FooterWidget()
     );
   }
 }

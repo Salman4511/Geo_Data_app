@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:geo_data_app/shared/widgets/footer_widget.dart';
+import 'package:geo_data_app/shared/widgets/navbar_widget.dart';
 
 class UserDashboardScreen extends StatelessWidget {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -9,7 +11,7 @@ class UserDashboardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('User Dashboard')),
+      appBar: NavbarWidget() as PreferredSizeWidget?,
       body: StreamBuilder<QuerySnapshot>(
         stream: _firestore.collection('locations').snapshots(),
         builder: (context, snapshot) {
@@ -35,6 +37,7 @@ class UserDashboardScreen extends StatelessWidget {
           );
         },
       ),
+      bottomNavigationBar: const FooterWidget()
     );
   }
 }

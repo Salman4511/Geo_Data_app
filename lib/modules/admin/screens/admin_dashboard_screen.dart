@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:geo_data_app/shared/widgets/footer_widget.dart';
+import 'package:geo_data_app/shared/widgets/navbar_widget.dart';
 
 class AdminDashboardScreen extends StatelessWidget {
   const AdminDashboardScreen({super.key});
@@ -6,7 +8,7 @@ class AdminDashboardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Admin Dashboard')),
+      appBar:NavbarWidget() as PreferredSizeWidget?,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -20,6 +22,7 @@ class AdminDashboardScreen extends StatelessWidget {
           ],
         ),
       ),
+      bottomNavigationBar: const FooterWidget()
     );
   }
 }

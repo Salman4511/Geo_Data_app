@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:geo_data_app/shared/services/excel_service.dart';
 import 'package:geo_data_app/shared/services/weather_service.dart';
+import 'package:geo_data_app/shared/widgets/footer_widget.dart';
+import 'package:geo_data_app/shared/widgets/navbar_widget.dart';
 
 class UploadExcelScreen extends StatefulWidget {
   const UploadExcelScreen({super.key});
@@ -31,13 +33,14 @@ class _UploadExcelScreenState extends State<UploadExcelScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Upload Excel')),
+      appBar: NavbarWidget() as PreferredSizeWidget?,
       body: Center(
         child: ElevatedButton(
           onPressed: _pickAndUploadFile,
-          child: Text('Upload Excel File'),
+          child: const Text('Upload Excel File'),
         ),
       ),
+      bottomNavigationBar: const FooterWidget()
     );
   }
 }
