@@ -7,10 +7,10 @@ class ExcelService {
       var excel = Excel.decodeBytes(bytes);
       List<Map<String, dynamic>> locations = [];
 
+      // ignore: unnecessary_null_comparison
       if (excel != null) {
         for (var table in excel.tables.keys) {
           for (var row in excel.tables[table]!.rows) {
-            // Ensure row has enough columns and handle null values
             if (row.length >= 4) {
               locations.add({
                 'country': row[0]?.toString() ?? '',
@@ -18,9 +18,9 @@ class ExcelService {
                 'district': row[2]?.toString() ?? '',
                 'city': row[3]?.toString() ?? '',
                 'lat': row[4]?.toString() ??
-                    '0.0', // Assuming latitude is in the 5th column
+                    '0.0', 
                 'lon': row[5]?.toString() ??
-                    '0.0', // Assuming longitude is in the 6th column
+                    '0.0', 
               });
             }
           }

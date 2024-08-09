@@ -71,7 +71,6 @@ class RouteGenerator {
       case AppRoutes.uploadExcel:
         return MaterialPageRoute(builder: (_) => const UploadExcelScreen());
       case AppRoutes.weatherReport:
-        // Extract arguments and pass them to WeatherReportScreen
         final weatherData = settings.arguments as List<Map<String, dynamic>>;
         return MaterialPageRoute(
           builder: (_) => WeatherReportScreen(weatherData: weatherData),
