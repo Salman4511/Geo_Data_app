@@ -44,6 +44,7 @@ class MyApp extends StatelessWidget {
         }
 
         return MaterialApp(
+          debugShowCheckedModeBanner: false,
           navigatorKey: navigatorKey,
           title: 'Geo Data App',
           theme: ThemeData(primarySwatch: Colors.blue),

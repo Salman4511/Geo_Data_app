@@ -30,6 +30,7 @@ environment:
 dependencies:
   cloud_firestore: null
   cupertino_icons: ^1.0.2
+  dio: ^5.5.0+1
   excel: ^4.0.3
   file_picker:
   firebase_auth: ^4.10.0
@@ -38,7 +39,9 @@ dependencies:
   flutter:
     sdk: flutter
   http: ^1.1.0
+  permission_handler:
   provider: ^6.1.2
+  weather: ^3.1.1
 
 dev_dependencies:
 
