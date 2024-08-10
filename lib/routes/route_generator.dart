@@ -45,6 +45,8 @@
 //   }
 // }
 import 'package:flutter/material.dart';
+import 'package:geo_data_app/modules/admin/screens/manage_user_screen.dart';
+import 'package:geo_data_app/modules/admin/screens/view_location_screen.dart';
 import 'package:geo_data_app/routes/app_routes.dart';
 import '../modules/admin/screens/admin_dashboard_screen.dart';
 import '../modules/admin/screens/add_location_screen.dart';
@@ -77,6 +79,10 @@ class RouteGenerator {
         );
       case AppRoutes.loading:
         return MaterialPageRoute(builder: (_) => const LoadingScreen());
+      case AppRoutes.viewLocations:
+        return MaterialPageRoute(builder: (_) => ViewLocationsScreen());
+      case AppRoutes.manageUsers:
+        return MaterialPageRoute(builder: (_) => ManageUsersScreen());
       default:
         return _errorRoute();
     }

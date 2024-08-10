@@ -8,4 +8,6 @@ class AppRoutes {
   static const String uploadExcel = '/uploadExcel';
   static const String weatherReport = '/weatherReport';
   static const String loading = '/loading';
+  static const String viewLocations = '/viewLocations';
+  static const String manageUsers = '/manageUsers';
 }

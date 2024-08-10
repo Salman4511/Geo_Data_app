@@ -20,9 +20,14 @@ class UploadExcelScreen extends StatefulWidget {
 class _UploadExcelScreenState extends State<UploadExcelScreen> {
   final ExcelService _excelService = ExcelService();
   final WeatherService _weatherService = WeatherService();
+  bool _isLoading = false;
 
   Future<void> _pickAndUploadFile() async {
     try {
+      setState(() {
+        _isLoading = true;
+      });
+
       if (await Permission.storage.request().isGranted) {
         FilePickerResult? result = await FilePicker.platform.pickFiles(
           type: FileType.custom,
@@ -72,11 +77,14 @@ class _UploadExcelScreenState extends State<UploadExcelScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Error: ${e.toString()}')),
       );
+    } finally {
+      setState(() {
+        _isLoading = false;
+      });
     }
   }
 
-
-  // Future<void> _pickAndUploadFile() async {
+  //  Future<void> _pickAndUploadFile() async {
   //   try {
   //     // Mock dataset
   //     final List<Map<String, dynamic>> locations = [
@@ -121,8 +129,6 @@ class _UploadExcelScreenState extends State<UploadExcelScreen> {
   //       });
   //     }
 
-  //     print('Weather Data to Pass: $weatherData'); // Debugging line
-
   //     Navigator.pushNamed(
   //       context,
   //       AppRoutes.weatherReport,
@@ -138,14 +144,44 @@ class _UploadExcelScreenState extends State<UploadExcelScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const NavbarWidget(),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: _pickAndUploadFile,
-          child: const Text('Upload Excel File'),
+      appBar: const NavbarWidget(title: 'Upload Excel',),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              'Upload Excel File',
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 20),
+            const Text(
+              'Select an Excel file to upload and retrieve weather data for the locations listed in the file.',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 16),
+            ),
+            const SizedBox(height: 40),
+            _isLoading
+                ? const CircularProgressIndicator()
+                : ElevatedButton.icon(
+                    onPressed: _pickAndUploadFile,
+                    icon: const Icon(Icons.upload_file),
+                    label: const Text('Upload Excel'),
+                    style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 30, vertical: 15),
+                      textStyle: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+          ],
         ),
       ),
-      // bottomNavigationBar: const FooterWidget()
     );
   }
 }
