@@ -94,43 +94,44 @@ Admins can use these credentials to log in and access the admin dashboard and ma
 
 The project follows this folder structure:
 
--lib/
-├── main.dart
-├── routes/
-│   ├── app_routes.dart
-│   └── route_generator.dart
-├── modules/
-│   ├── admin/
-│   │   ├── screens/
-│   │      ├── admin_dashboard_screen.dart
-│   │      ├── add_location_screen.dart
-│   │      ├── manage_users_screen.dart
-│   │      └── view_locations_screen.dart
-│   │ 
-│   ├── user/
-│   │   ├── screens/
-│   │      ├── user_dashboard_screen.dart
-│   │      ├── upload_excel_screen.dart
-│   │      └── weather_report_screen.dart
-│   │   
-│   └── auth/
-│       ├── screens/
-│          ├── login_screen.dart
-│          ├── signup_screen.dart
-│          └── loading_screen.dart
-│       
-└── shared/
-    ├── widgets/
-    │   ├── navbar_widget.dart
-    │   ├── text_field_widget.dart
-    │   └── footer_widget.dart
-    ├── services/
-    │   ├── auth_services.dart
-    │   ├── excel_services.dart
-    │   └── weather_services.dart
-    └── utils/
-        └── constants.dart
-
+  ```plaintext
+  -lib/
+  ├── main.dart
+  ├── routes/
+  │   ├── app_routes.dart
+  │   └── route_generator.dart
+  ├── modules/
+  │   ├── admin/
+  │   │   ├── screens/
+  │   │      ├── admin_dashboard_screen.dart
+  │   │      ├── add_location_screen.dart
+  │   │      ├── manage_users_screen.dart
+  │   │      └── view_locations_screen.dart
+  │   │ 
+  │   ├── user/
+  │   │   ├── screens/
+  │   │      ├── user_dashboard_screen.dart
+  │   │      ├── upload_excel_screen.dart
+  │   │      └── weather_report_screen.dart
+  │   │   
+  │   └── auth/
+  │       ├── screens/
+  │          ├── login_screen.dart
+  │          ├── signup_screen.dart
+  │          └── loading_screen.dart
+  │       
+  └── shared/
+      ├── widgets/
+      │   ├── navbar_widget.dart
+      │   ├── text_field_widget.dart
+      │   └── footer_widget.dart
+      ├── services/
+      │   ├── auth_services.dart
+      │   ├── excel_services.dart
+      │   └── weather_services.dart
+      └── utils/
+          └── constants.dart
+```
 
 ### Prerequisites
 
